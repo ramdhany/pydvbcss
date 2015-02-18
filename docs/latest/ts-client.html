@@ -332,14 +332,14 @@ client.disconnect()</pre>
 <dt id="dvbcss.protocol.client.ts.TSClientConnection.onConnected">
 <tt class="descname">onConnected</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientConnection.onConnected" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the connection is opened and the setup-data message has been sent.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.client.ts.TSClientConnection.onControlTimestamp">
 <tt class="descname">onControlTimestamp</tt><big>(</big><em>controlTimestamp</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientConnection.onControlTimestamp" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when a Control Timestamp message is received from the server.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -354,14 +354,14 @@ client.disconnect()</pre>
 <dt id="dvbcss.protocol.client.ts.TSClientConnection.onDisconnected">
 <tt class="descname">onDisconnected</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientConnection.onDisconnected" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the connection is closed.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.client.ts.TSClientConnection.onProtocolError">
 <tt class="descname">onProtocolError</tt><big>(</big><em>msg</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientConnection.onProtocolError" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when there has been an error in the use of the TS protocol - e.g. receiving the wrong kind of message.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -411,7 +411,7 @@ the server. The <cite>contentIdStem</cite> and <cite>timelineSelector</cite> you
 <a class="reference internal" href="ts-messages.html#dvbcss.protocol.ts.SetupData" title="dvbcss.protocol.ts.SetupData"><tt class="xref py py-class docutils literal"><span class="pre">SetupData</span></tt></a> message to choose the timeline to receive from the server.</p>
 <p>While connected, while the timeline is available, the timelineClock you provided will have its <a class="reference internal" href="clock.html#dvbcss.clock.CorrelatedClock.correlation" title="dvbcss.clock.CorrelatedClock.correlation"><tt class="xref py py-data docutils literal"><span class="pre">correlation</span></tt></a>
 updated to keep it in sync with the timeline received from the server.</p>
-<p>The <tt class="xref py py-data docutils literal"><span class="pre">speed</span></tt> property of the timeline clock will also be adjusted to match
+<p>The <a class="reference internal" href="clock.html#dvbcss.clock.CorrelatedClock.speed" title="dvbcss.clock.CorrelatedClock.speed"><tt class="xref py py-data docutils literal"><span class="pre">speed</span></tt></a> property of the timeline clock will also be adjusted to match
 the timeline speed indicated by the server. For example: it will be set to zero when the timeline is paused,
 or 2.0 when the timeline speed is x2. The <a class="reference internal" href="clock.html#dvbcss.clock.CorrelatedClock.tickRate" title="dvbcss.clock.CorrelatedClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property of the clock
 is not changed.</p>
@@ -516,21 +516,21 @@ is not changed.</p>
 <dt id="dvbcss.protocol.client.ts.TSClientClockController.onConnected">
 <tt class="descname">onConnected</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientClockController.onConnected" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the connection is opened and the setup-data message has been sent.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.client.ts.TSClientClockController.onDisconnected">
 <tt class="descname">onDisconnected</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientClockController.onDisconnected" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the connection is closed.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.client.ts.TSClientClockController.onProtocolError">
 <tt class="descname">onProtocolError</tt><big>(</big><em>msg</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientClockController.onProtocolError" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when there has been an error in the use of the CII protocol - e.g. receiving the wrong kind of message.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -545,14 +545,14 @@ is not changed.</p>
 <dt id="dvbcss.protocol.client.ts.TSClientClockController.onTimelineAvailable">
 <tt class="descname">onTimelineAvailable</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientClockController.onTimelineAvailable" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the server indicates that the timeline is available.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.client.ts.TSClientClockController.onTimelineUnavailable">
 <tt class="descname">onTimelineUnavailable</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/ts.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.ts.TSClientClockController.onTimelineUnavailable" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method is called when the server indicates that the timeline is unavailable.</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 <dl class="method">
@@ -562,7 +562,7 @@ is not changed.</p>
 <p>This means that a received Control Timestamp has changed the timing of the clock relative
 to the wall clock by the threshold amount or more, or that the speed of the timeline has changed.
 (as indicated by the timelineSpeedMultiplier property of received Control Timestamps).</p>
-<p>This is a stub method - override in subclass.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
