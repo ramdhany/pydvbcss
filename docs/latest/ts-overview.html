@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSS-TS Protocol introduction &mdash; pydvbcss 0.1-latest documentation</title>
+  <title>CSS-TS Protocol introduction &mdash; pydvbcss 0.1.1-latest documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="pydvbcss 0.1-latest documentation" href="index.html"/>
+    <link rel="top" title="pydvbcss 0.1.1-latest documentation" href="index.html"/>
         <link rel="up" title="CSS-TS protocol" href="ts.html"/>
         <link rel="next" title="CSS-TS Message objects" href="ts-messages.html"/>
         <link rel="prev" title="CSS-TS protocol" href="ts.html"/> 
@@ -127,10 +127,12 @@
 <p><strong>Here is a quick introduction to the CSS-TS protocol. For full details, refer to the</strong> <a class="reference external" href="https://www.dvb.org/search/results/keywords/A167">DVB specification</a>.</p>
 <p>The CSS-TS protocol is for <em>Timeline Synchronisation</em>. Via this protocol,
 the server (e.g. TV) pushes timestamps to the client (e.g. companion) to keep
-it up-to-date on the progress of a particular timeline (chosen by the client).</p>
+it up-to-date on the progress of a particular timeline. The timeline to use
+is requested by the client at the beginning of the interaction.</p>
 <p>A client can also report its own timing and what range of timings it can
 cope with. This allows the client to negotiate a mutually achievable
-timing with the server.</p>
+timing with the server, although the server is under no obligation and can
+choose to ignore this information.</p>
 <p>It is a WebSockets based protocol and messages are in JSON format.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -249,7 +251,7 @@ it can present; but no limit on how long it can delay (buffer):</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, British Broadcasting Corporation.
-      Last updated on Feb 02, 2015.
+      Last updated on Feb 18, 2015.
     </p>
   </div>
 
@@ -269,7 +271,7 @@ it can present; but no limit on how long it can delay (buffer):</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1-latest',
+            VERSION:'0.1.1-latest',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

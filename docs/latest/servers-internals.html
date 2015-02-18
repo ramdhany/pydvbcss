@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Protocol server implementation details &mdash; pydvbcss 0.1-latest documentation</title>
+  <title>Protocol server implementation details &mdash; pydvbcss 0.1.1-latest documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="pydvbcss 0.1-latest documentation" href="index.html"/>
+    <link rel="top" title="pydvbcss 0.1.1-latest documentation" href="index.html"/>
         <link rel="up" title="Internal implementation details" href="internals.html"/>
         <link rel="next" title="How the dvbcss.task module works internally" href="task-internals.html"/>
         <link rel="prev" title="Internal implementation details" href="internals.html"/> 
@@ -497,14 +497,16 @@ connects. This is stored against the websocket connection and can be retrieved u
 <dl class="method">
 <dt id="dvbcss.protocol.server.WSServerBase.onClientConnect">
 <tt class="descname">onClientConnect</tt><big>(</big><em>webSock</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/server.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.server.WSServerBase.onClientConnect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stub method that is called when a new client connects. Implement in subclasses.</p>
+<dd><p>This method is called when a new client connects.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <p>:param webSock:(<a class="reference external" href="https://ws4py.readthedocs.org/en/latest/sources/ws4py/#ws4py.websocket.WebSocket" title="(in ws4py v0.3.5)"><tt class="xref py py-class docutils literal"><span class="pre">WebSocket</span></tt></a>) The object representing the WebSocket connection of the newly connected client</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="dvbcss.protocol.server.WSServerBase.onClientDisconnect">
 <tt class="descname">onClientDisconnect</tt><big>(</big><em>webSock</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/server.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.server.WSServerBase.onClientDisconnect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stub method that is called when a client disconnects. Implement in subclasses.</p>
+<dd><p>This method is called when a client disconnects.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -518,7 +520,8 @@ connects. This is stored against the websocket connection and can be retrieved u
 <dl class="method">
 <dt id="dvbcss.protocol.server.WSServerBase.onClientMessage">
 <tt class="descname">onClientMessage</tt><big>(</big><em>webSock</em>, <em>msg</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/server.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.server.WSServerBase.onClientMessage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stub method that is called when a message is received from a client. Implement in subclasses.</p>
+<dd><p>This method is called when a message is received from a client.</p>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -609,7 +612,7 @@ and <a class="reference internal" href="#dvbcss.protocol.server.WSServerBase._re
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, British Broadcasting Corporation.
-      Last updated on Feb 02, 2015.
+      Last updated on Feb 18, 2015.
     </p>
   </div>
 
@@ -629,7 +632,7 @@ and <a class="reference internal" href="#dvbcss.protocol.server.WSServerBase._re
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1-latest',
+            VERSION:'0.1.1-latest',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
