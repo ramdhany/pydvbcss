@@ -544,8 +544,18 @@ from parent clock ticks. Default = 1.0 = normal tick rate.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>otherClock</strong> &#8211; A <a class="reference internal" href="#module-dvbcss.clock" title="dvbcss.clock"><tt class="xref py py-class docutils literal"><span class="pre">clock</span></tt></a> object representing another clock.</li>
+<li><strong>ticks</strong> &#8211; A time (tick value) for this clock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The tick value of the <cite>otherClock</cite> that represents the same moment in time.</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Throws NoCommonClock:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if there is no common ancestor clock (meaning it is not possible to convert</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">if there is no common ancestor clock (meaning it is not possible to convert</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -618,10 +628,64 @@ Returns <cite>integer</cite> ticks when its <tt class="xref py py-data docutils 
 </dd></dl>
 
 <dl class="method">
+<dt id="dvbcss.clock.SysClock.calcWhen">
+<tt class="descname">calcWhen</tt><big>(</big><em>ticksWhen</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.SysClock.calcWhen" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body"><p class="first">&#8220;when&#8221; in terms of the underlying clock behind the root clock implementation (e.g. <tt class="xref py py-func docutils literal"><span class="pre">monotonic_time.time()</span></tt> in the case of <a class="reference internal" href="#dvbcss.clock.SysClock" title="dvbcss.clock.SysClock"><tt class="xref py py-class docutils literal"><span class="pre">SysClock</span></tt></a>)</p>
+<p class="last">Stub. Implement in your subclass.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.SysClock.fromParentTicks">
+<tt class="descname">fromParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.SysClock.fromParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value for the parent clock converted to the timescale of this clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="dvbcss.clock.SysClock.getEffectiveSpeed">
 <tt class="descname">getEffectiveSpeed</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.SysClock.getEffectiveSpeed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the &#8216;effective speed&#8217; of this clock.</p>
 <p>This is equal to multiplying together the speed properties of this clock and all of the parents up to the root clock.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.SysClock.getParent">
+<tt class="descname">getParent</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.SysClock.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a> representing the immediate parent of this clock, or None if it is a root clock.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -677,11 +741,42 @@ from parent clock ticks. Default = 1.0 = normal tick rate.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>otherClock</strong> &#8211; A <a class="reference internal" href="#module-dvbcss.clock" title="dvbcss.clock"><tt class="xref py py-class docutils literal"><span class="pre">clock</span></tt></a> object representing another clock.</li>
+<li><strong>ticks</strong> &#8211; A time (tick value) for this clock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The tick value of the <cite>otherClock</cite> that represents the same moment in time.</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Throws NoCommonClock:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if there is no common ancestor clock (meaning it is not possible to convert</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">if there is no common ancestor clock (meaning it is not possible to convert</p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.SysClock.toParentTicks">
+<tt class="descname">toParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.SysClock.toParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value of this clock converted to the timescale of the parent clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="method">
@@ -765,6 +860,22 @@ of the parent clock supplies floating point values.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="dvbcss.clock.CorrelatedClock.calcWhen">
+<tt class="descname">calcWhen</tt><big>(</big><em>ticksWhen</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.calcWhen" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body"><p class="first">&#8220;when&#8221; in terms of the underlying clock behind the root clock implementation (e.g. <tt class="xref py py-func docutils literal"><span class="pre">monotonic_time.time()</span></tt> in the case of <a class="reference internal" href="#dvbcss.clock.SysClock" title="dvbcss.clock.SysClock"><tt class="xref py py-class docutils literal"><span class="pre">SysClock</span></tt></a>)</p>
+<p class="last">Stub. Implement in your subclass.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="dvbcss.clock.CorrelatedClock.correlation">
 <tt class="descname">correlation</tt><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.correlation" title="Permalink to this definition">¶</a></dt>
@@ -774,10 +885,48 @@ This value must be a tuple, not a list.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="dvbcss.clock.CorrelatedClock.fromParentTicks">
+<tt class="descname">fromParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.fromParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.CorrelatedClock.tickRate" title="dvbcss.clock.CorrelatedClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value for the parent clock converted to the timescale of this clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="dvbcss.clock.CorrelatedClock.getEffectiveSpeed">
 <tt class="descname">getEffectiveSpeed</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.getEffectiveSpeed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the &#8216;effective speed&#8217; of this clock.</p>
 <p>This is equal to multiplying together the speed properties of this clock and all of the parents up to the root clock.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.CorrelatedClock.getParent">
+<tt class="descname">getParent</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a> representing the immediate parent of this clock, or None if it is a root clock.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -838,11 +987,42 @@ parent clock and this clock) where the tick value for this clock is the provided
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>otherClock</strong> &#8211; A <a class="reference internal" href="#module-dvbcss.clock" title="dvbcss.clock"><tt class="xref py py-class docutils literal"><span class="pre">clock</span></tt></a> object representing another clock.</li>
+<li><strong>ticks</strong> &#8211; A time (tick value) for this clock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The tick value of the <cite>otherClock</cite> that represents the same moment in time.</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Throws NoCommonClock:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if there is no common ancestor clock (meaning it is not possible to convert</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">if there is no common ancestor clock (meaning it is not possible to convert</p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.CorrelatedClock.toParentTicks">
+<tt class="descname">toParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.CorrelatedClock.toParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.CorrelatedClock.tickRate" title="dvbcss.clock.CorrelatedClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value of this clock converted to the timescale of the parent clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="method">
@@ -915,10 +1095,64 @@ of the parent clock supplies floating point values.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="dvbcss.clock.TunableClock.calcWhen">
+<tt class="descname">calcWhen</tt><big>(</big><em>ticksWhen</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.TunableClock.calcWhen" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body"><p class="first">&#8220;when&#8221; in terms of the underlying clock behind the root clock implementation (e.g. <tt class="xref py py-func docutils literal"><span class="pre">monotonic_time.time()</span></tt> in the case of <a class="reference internal" href="#dvbcss.clock.SysClock" title="dvbcss.clock.SysClock"><tt class="xref py py-class docutils literal"><span class="pre">SysClock</span></tt></a>)</p>
+<p class="last">Stub. Implement in your subclass.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.TunableClock.fromParentTicks">
+<tt class="descname">fromParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.TunableClock.fromParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.TunableClock.tickRate" title="dvbcss.clock.TunableClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value for the parent clock converted to the timescale of this clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="dvbcss.clock.TunableClock.getEffectiveSpeed">
 <tt class="descname">getEffectiveSpeed</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.TunableClock.getEffectiveSpeed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the &#8216;effective speed&#8217; of this clock.</p>
 <p>This is equal to multiplying together the speed properties of this clock and all of the parents up to the root clock.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.TunableClock.getParent">
+<tt class="descname">getParent</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.TunableClock.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a> representing the immediate parent of this clock, or None if it is a root clock.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -981,11 +1215,42 @@ of the parent clock supplies floating point values.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>otherClock</strong> &#8211; A <a class="reference internal" href="#module-dvbcss.clock" title="dvbcss.clock"><tt class="xref py py-class docutils literal"><span class="pre">clock</span></tt></a> object representing another clock.</li>
+<li><strong>ticks</strong> &#8211; A time (tick value) for this clock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The tick value of the <cite>otherClock</cite> that represents the same moment in time.</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Throws NoCommonClock:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if there is no common ancestor clock (meaning it is not possible to convert</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">if there is no common ancestor clock (meaning it is not possible to convert</p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.TunableClock.toParentTicks">
+<tt class="descname">toParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.TunableClock.toParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.TunableClock.tickRate" title="dvbcss.clock.TunableClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value of this clock converted to the timescale of the parent clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="method">
@@ -1044,6 +1309,22 @@ and may differ from what the reality of the two correlations represents!</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="dvbcss.clock.RangeCorrelatedClock.calcWhen">
+<tt class="descname">calcWhen</tt><big>(</big><em>ticksWhen</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.calcWhen" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body"><p class="first">&#8220;when&#8221; in terms of the underlying clock behind the root clock implementation (e.g. <tt class="xref py py-func docutils literal"><span class="pre">monotonic_time.time()</span></tt> in the case of <a class="reference internal" href="#dvbcss.clock.SysClock" title="dvbcss.clock.SysClock"><tt class="xref py py-class docutils literal"><span class="pre">SysClock</span></tt></a>)</p>
+<p class="last">Stub. Implement in your subclass.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="dvbcss.clock.RangeCorrelatedClock.correlation1">
 <tt class="descname">correlation1</tt><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.correlation1" title="Permalink to this definition">¶</a></dt>
@@ -1061,10 +1342,48 @@ This value must be a tuple, not a list.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="dvbcss.clock.RangeCorrelatedClock.fromParentTicks">
+<tt class="descname">fromParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.fromParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.RangeCorrelatedClock.tickRate" title="dvbcss.clock.RangeCorrelatedClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value for the parent clock converted to the timescale of this clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="dvbcss.clock.RangeCorrelatedClock.getEffectiveSpeed">
 <tt class="descname">getEffectiveSpeed</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.getEffectiveSpeed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the &#8216;effective speed&#8217; of this clock.</p>
 <p>This is equal to multiplying together the speed properties of this clock and all of the parents up to the root clock.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.RangeCorrelatedClock.getParent">
+<tt class="descname">getParent</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a> representing the immediate parent of this clock, or None if it is a root clock.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1118,11 +1437,42 @@ This value must be a tuple, not a list.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>otherClock</strong> &#8211; A <a class="reference internal" href="#module-dvbcss.clock" title="dvbcss.clock"><tt class="xref py py-class docutils literal"><span class="pre">clock</span></tt></a> object representing another clock.</li>
+<li><strong>ticks</strong> &#8211; A time (tick value) for this clock</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The tick value of the <cite>otherClock</cite> that represents the same moment in time.</p>
+</td>
+</tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Throws NoCommonClock:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">if there is no common ancestor clock (meaning it is not possible to convert</td>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">if there is no common ancestor clock (meaning it is not possible to convert</p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.clock.RangeCorrelatedClock.toParentTicks">
+<tt class="descname">toParentTicks</tt><big>(</big><em>ticks</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/clock.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.clock.RangeCorrelatedClock.toParentTicks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stub. Implement in your subclass.</p>
+<blockquote>
+<div><p>Implementations should use the parent clock&#8217;s <a class="reference internal" href="#dvbcss.clock.RangeCorrelatedClock.tickRate" title="dvbcss.clock.RangeCorrelatedClock.tickRate"><tt class="xref py py-data docutils literal"><span class="pre">tickRate</span></tt></a> property when performing the conversion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body">The specified tick value of this clock converted to the timescale of the parent clock.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">throws StopIteration:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if this clock has no parent</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>(documentation inherited from <a class="reference internal" href="#dvbcss.clock.ClockBase" title="dvbcss.clock.ClockBase"><tt class="xref py py-class docutils literal"><span class="pre">ClockBase</span></tt></a>)</p>
 </dd></dl>
 
 <dl class="method">
@@ -1164,7 +1514,7 @@ This value must be a tuple, not a list.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, British Broadcasting Corporation.
-      Last updated on Feb 02, 2015.
+      Last updated on Feb 18, 2015.
     </p>
   </div>
 
