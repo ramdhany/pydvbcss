@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSS-WC Clients &mdash; pydvbcss 0.1.1-latest documentation</title>
+  <title>CSS-WC Clients &mdash; pydvbcss 0.2-latest documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   
 
   
-    <link rel="top" title="pydvbcss 0.1.1-latest documentation" href="index.html"/>
+    <link rel="top" title="pydvbcss 0.2-latest documentation" href="index.html"/>
         <link rel="up" title="CSS-WC protocol" href="wc.html"/>
         <link rel="next" title="CSS-WC Servers" href="wc-server.html"/>
         <link rel="prev" title="CSS-WC Message objects" href="wc-messages.html"/> 
@@ -384,7 +384,7 @@ the Wall Clock on the server.</p>
 <h3><a class="toc-backref" href="#id17">Filter and Prediction algorithm creator</a><a class="headerlink" href="#filter-and-prediction-algorithm-creator" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="dvbcss.protocol.client.wc.algorithm.FilterAndPredict">
-<tt class="descclassname">dvbcss.protocol.client.wc.algorithm.</tt><tt class="descname">FilterAndPredict</tt><big>(</big><em>clock</em>, <em>repeatSecs=1.0</em>, <em>timeoutSecs=0.2</em>, <em>filters=[]</em>, <em>predictor=&lt;dvbcss.protocol.client.wc.algorithm._filterpredict.PredictSimple object at 0x107477490&gt;</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/wc/algorithm.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.wc.algorithm.FilterAndPredict" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">dvbcss.protocol.client.wc.algorithm.</tt><tt class="descname">FilterAndPredict</tt><big>(</big><em>clock</em>, <em>repeatSecs=1.0</em>, <em>timeoutSecs=0.2</em>, <em>filters=[]</em>, <em>predictor=&lt;dvbcss.protocol.client.wc.algorithm._filterpredict.PredictSimple object at 0x10f681390&gt;</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/wc/algorithm.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.wc.algorithm.FilterAndPredict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combines zero, one or more Filters and a Predictor and returns an algorithm for a WallClockClient.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -502,6 +502,15 @@ this algorithm will not synchronise correctly.</p>
 </div></blockquote>
 <p>The tick rate of the Clock can be any tick rate (it does not have to be one tick per nanosecond),
 but too low a tick rate will limit clock synchronisation precision.</p>
+<p>There is a stub callback function provided that you can override (e.g. by subclassing)
+that will be called whenever the clock is adjusted:</p>
+<ul class="simple">
+<li><tt class="xref py py-func docutils literal"><span class="pre">onClockAdjusted()</span></tt></li>
+</ul>
+<p>The arguments to this method provide details of when
+the adjustment took place and what adjustment was made. It also reports the dispersion
+before and after the adjustment and gives information needed to extrapolate future
+dispersions. You can use this, for example, to record the clock dispersion over time.</p>
 <p><em>Initialisation takes the following parameters:</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -528,6 +537,51 @@ but too low a tick rate will limit clock synchronisation precision.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.protocol.client.wc.algorithm.LowestDispersionCandidate.getWorstDispersion">
+<tt class="descname">getWorstDispersion</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/wc/algorithm.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.wc.algorithm.LowestDispersionCandidate.getWorstDispersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the worst (greatest) dispersion encountered since
+the previous time this method was called.</p>
+<p>The first time it is called, the value reported will be very large,
+reflecting the fact that initially dispersion is high because the
+client is not yet synchronised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dispersion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dvbcss.protocol.client.wc.algorithm.LowestDispersionCandidate.onClockAdjusted">
+<tt class="descname">onClockAdjusted</tt><big>(</big><em>timeAfterAdjustment</em>, <em>adjustment</em>, <em>oldDispersionNanos</em>, <em>newDispersionNanos</em>, <em>dispersionGrowthRate</em><big>)</big><a class="reference external" href="https://github.com/BBC/pydvbcss/tree/master/dvbcss/protocol/client/wc/algorithm.py"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dvbcss.protocol.client.wc.algorithm.LowestDispersionCandidate.onClockAdjusted" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called immediately after a clock adjustment has been made,
+and gives details on how the clock was changed and the effect on the dispersion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timeAfterAdjustment</strong> &#8211; The wall clock time (in ticks) immedaitely after the adjustment took place</li>
+<li><strong>adjustment</strong> &#8211; The amount by which the wall clock instaneously changed (in ticks)</li>
+<li><strong>oldDispersionNanos</strong> &#8211; The dispersion (in nanoseconds) just prior to adjustment</li>
+<li><strong>newDispersionNanos</strong> &#8211; The dispersion (in nanoseconds) immediately after adjustment</li>
+<li><strong>dispersionGrowthRate</strong> &#8211; The rate at which dispersion will continue to grow.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>To calculate a future dispersion at time T:</dt>
+<dd>futureDispersion = newDispersionNanos + (t-timeOfAdjustment) * dispersionGrowthRate</dd>
+</dl>
+<p><em>This is a stub for this method. Sub-classes should implement it.</em></p>
 </dd></dl>
 
 </dd></dl>
@@ -669,7 +723,7 @@ previously.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, British Broadcasting Corporation.
-      Last updated on Feb 18, 2015.
+      Last updated on Mar 17, 2015.
     </p>
   </div>
 
@@ -689,7 +743,7 @@ previously.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.1-latest',
+            VERSION:'0.2-latest',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
